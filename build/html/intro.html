@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Intro &#8212; Linux Crash Course  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/groundwork.css?v=594d7a89" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Navigation" href="navigation.html" />
+    <link rel="prev" title="Linux Crash Course documentation" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="navigation.html" title="Navigation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Linux Crash Course documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linux Crash Course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Intro</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="intro">
+<h1>Intro<a class="headerlink" href="#intro" title="Link to this heading">¶</a></h1>
+<section id="what-the-fuck-is-a-linux">
+<span id="id1"></span><h2>What the fuck is a Linux?<a class="headerlink" href="#what-the-fuck-is-a-linux" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please don’t take anything in this guide as 100% gospel.  While I’ve done my best to ensure I’m not giving you any outright erroneous information, it’s entirely possible that I either have forgotten something vital, misunderstood something on a fundamental level, or your individual system configuration is in conflict with the information expressed in this guide.  Please do your own research if you’d like further information about anything contained in this guide; use this guide at your own risk.  I’m not responsible for you bricking your shit.</p>
+</div>
+<p>Linux is an operating system, like Windows or MacOS.  Unless you ask a huge nerd, who will happily tell you Linux is a <em>kernel</em>; Ubuntu (or Debian, or Arch btw) are <em>operating systems</em>.  Even huger nerds will probably tell me why I’m wrong, but fuck ‘em.</p>
+<p>Look, I’m not going to bore you with the details - who (Linus Torvalds), when (late 80s/early 90s), why (Linus is a bit of a contrarian; also boredom) - don’t really matter for our purposes.  Feel free to investigate on your own time.</p>
+<p>Fundamentally, these are the things you should keep in mind:</p>
+</section>
+<section id="everything-is-a-file">
+<span id="id2"></span><h2>Everything is a File<a class="headerlink" href="#everything-is-a-file" title="Link to this heading">¶</a></h2>
+<p>So what do I mean by that?  In Linux, we conceptualize everything as a file (or folder, though we often call that a <cite>dir</cite> as in <strong>directory</strong>.) So whereas on Windows you’d often have to, say, open a program and reconfigure its’ settings within the software, in Linux you’ll often <em>edit</em> – in a text editor – the actual values of data within a file.  In Windows, you rely on the GUI to make most changes; in Linux, there are times the command line is either the only or the <strong>best</strong> option.</p>
+<p>This is relevant in deeper ways, but we won’t get into those right now.</p>
+</section>
+<section id="the-superuser">
+<span id="superusers"></span><h2>The Superuser<a class="headerlink" href="#the-superuser" title="Link to this heading">¶</a></h2>
+<p>Unlike Windows, Linux is <strong>extremely</strong> security-concious.  This isn’t to say Windows is <em>especially</em> poor in terms of security; however, default Windows configurations are <strong>extremelly</strong> (read: dangerously) lax with respect to file permissions – so much so that it’s possible the concept of “file permissions” is somewhat alien.</p>
+<p>Whereas in Windows you might right click something and “Run As Administrator”, in Linux you’d instead log into the so-called superuser account (although much more frequently you’ll hear this administrative account referred to as “root”).</p>
+<p>Let’s imagine we need to reconfigure some SSH settings on a system-wide level.  As this action is potentially extremely dangerous (in terms of potentially opening the machine up to  possible attack vectors), Linux doesn’t allow just <em>anyone</em> to fuck around with such files.</p>
+<p>I’ll illustrate what I mean. First, we’re going to open our SSH configuration file in a text editor (in this case we’re using nano, but there are myriad text editors you could use).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>/etc/ssh/ssh_config
+</pre></div>
+</div>
+<p>Depending on your distribution, level of administrative access, etc., you likely either <em>immediately</em> got an error which disallowed you to open the file <em>at all</em>.  However, most distributions with which I’m familiar will in fact let you open the file in a text editor.  If so, go ahead and add the following to the very end of the open file: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">just</span> <span class="pre">a</span> <span class="pre">pointless</span> <span class="pre">comment</span> <span class="pre">to</span> <span class="pre">illustrate</span> <span class="pre">a</span> <span class="pre">point</span></code>.</p>
+<p>Once you’ve added that (or whatever text you’d like, really), go ahead and try to write the changes to the file.  By default in nano, the hotkeys are Ctrl+X to exit; you’ll receive a message asking whether or not you’d like to “save the modified buffer” – that is, write your changes to disk.  If you say “yes”, you’ll quickly find yourself faced with another error: you lack the proper permissions to write to this file location.</p>
+<p>So what, then, is to be done?  Well, you <strong>could</strong> login to the root account on the system, assuming you know the root password (and depending a bit on the individual system configuration):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su<span class="w"> </span>root
+nano<span class="w"> </span>/etc/ssh/ssh_config
+</pre></div>
+</div>
+<p>So what are we doing here?  Firstly, we’re logging into an entirely different user account – in this case <code class="docutils literal notranslate"><span class="pre">root</span></code>, the most fundamental administrative account on any Linux system.  If you have “root access”, you can execute <strong>any</strong> command the machine is capable of – often without so much as a confirmation.  In the second line, we’re simply doing what we’ve seen prior: we’re opening the configuration file for editing.  You’ll notice that now, however, you should be able to edit the file <strong>and</strong> save the changes to disk.</p>
+<p>Once you switch to the root account, you’ll also notice that your prompt changes.  Whereas before you’d see, “&lt;username&gt;&#64;&lt;hostname&gt;:” (or similar), you’ll notice the username has changed to “root&#64;&lt;hostname&gt;”.  Now, any command you execute will be run – often without asking for further confirmation.</p>
+<p>You may notice that this presents some potentially major issues, the primary of which is: when you inevitably forget to log back <strong>out</strong> of the root account, and you make some sort of change that was <strong>intended</strong> to be made locally (as your username), you instead make that change <strong>globally</strong>.  As such, it is often considered poor form to actually switch to the root account – a better solution would be some way to <em>temporarily</em> login to the root account, just long enough to perform the necessary task(s), and ensuring you log back <em>out</em> of the root account before you <strong>fuck everything up</strong>.  Enter: <code class="docutils literal notranslate"><span class="pre">sudo</span></code>!</p>
+<p>Let’s look at the exact same task (editing your SSH configuration file), using sudo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/ssh_config
+</pre></div>
+</div>
+<p>Provided you know the requisite password, you should now be able to edit and save the configuration file <em>without</em> having to actually switch to another user account.  The magic here comes from the <code class="docutils literal notranslate"><span class="pre">sudo</span></code> argument we’ve prepended to the command.  Sudo is short for “superuser do”; in other words, we’re telling the superuser (the root user) to “do” (ie, execute) a particular command (or commands).  We don’t have to remember to log back out of anything, because as soon as we’ve run our command, we’re right back to whatever our username was before.  This is considered <em>much</em> safer than logging into the root account entirely, though it should be noted that any command run with “sudo” <em>will be treated as if run by the root user</em>.  In other words, be careful.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is <strong>extremely</strong> bad practice to execute commands using ‘sudo’ unless you are absolutely sure what the command is going to do, and unless <strong>absolutely necessary</strong> for the command to execute correctly.  If you can do it <em>without</em> invoking ‘sudo’, there are almost <em>no</em> situations where it is preferable to do otherwise.</p>
+</div>
+</section>
+<section id="for-the-home-team">
+<span id="root-directory"></span><h2>/ for the Home Team<a class="headerlink" href="#for-the-home-team" title="Link to this heading">¶</a></h2>
+<p>One of the most important principles to understand about Linux is that the way in which drives (and therefore directories and files lower in the hierarchy) are named are fundamentally different than Windows – if you’ve used MacOS, my understanding is that this will be much more familiar.</p>
+<p>First: rather than a <code class="docutils literal notranslate"><span class="pre">C:</span></code> (or D, or X) drive, Linux refers to every file location relative to <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p>
+<p>That’s not a typo: the base directory for the entire filestructure is <code class="docutils literal notranslate"><span class="pre">/</span></code>, pronounced “root”.  This isn’t to be confused with the concept of “root access” – but more on that later.  Moving down the hierarchy from <code class="docutils literal notranslate"><span class="pre">/</span></code>, let’s look at a user’s “home” directory.</p>
+<p>You can think of the “home” directory as an equivalent of a Windows user’s “Desktop” folder.  Essentially this is where user-specific files, settings, etc. are stored – they’re available only to the user who owns the directory (by default), and permission is denied to other users on the machine (again, by default – this can be changed).  So where would you find your home directory? Let’s take a look at an example:</p>
+<p>Let’s assume our machine has two users, “Bob” and “Frank”.  Inside the root directory – <code class="docutils literal notranslate"><span class="pre">/</span></code> – you’ll find a <code class="docutils literal notranslate"><span class="pre">home</span></code> directory.  Within <strong>that</strong>, you’d expect to find two directories: <code class="docutils literal notranslate"><span class="pre">bob</span></code> and <code class="docutils literal notranslate"><span class="pre">frank</span></code>.</p>
+</section>
+<section id="oh-the-places-you-ll-go">
+<span id="oh-the-places-youll-go"></span><h2>Oh, the Places You’ll Go<a class="headerlink" href="#oh-the-places-you-ll-go" title="Link to this heading">¶</a></h2>
+<p>I won’t delve <strong>too</strong> deeply into the other directories located in the root directory, but some other important directories directly off <code class="docutils literal notranslate"><span class="pre">/</span></code> include:</p>
+<dl class="option-list">
+<dt><kbd><span class="option">/etc</span></kbd></dt>
+<dd><p>This directory hold many configuration files for various aspects of the system.  Note that the configuration files in <code class="docutils literal notranslate"><span class="pre">/etc</span></code> are <em>system-wide</em>, not <em>user-specific</em>.</p>
+</dd>
+<dt><kbd><span class="option">/bin</span></kbd></dt>
+<dd><p>This directory contains <em>most</em> of the binary files which comprise individual programs.  So if you install something from a standard Linux repository – and install it <em>system-wide</em> – it’ll most likely install here.</p>
+</dd>
+<dt><kbd><span class="option">/dev</span></kbd></dt>
+<dd><p>This directory lists all “block devices” on the system.  Without getting too deep into the concept of block devices, suffice to say that this directory lists all <em>physical or virtual</em> devices on the system.  So if you want to, for instance, wipe your secondary hard disk, you’d probably take a look in <code class="docutils literal notranslate"><span class="pre">/dev</span></code> to find the particular device.</p>
+</dd>
+<dt><kbd><span class="option">/tmp</span></kbd></dt>
+<dd><p>This is somewhat self-explanatory: it holds files which are only extant for a limited period of time, often only during the runtime of a particular application.  However, it is sometimes useful to write files to <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> such that they automatically delete themselves after a reboot.</p>
+</dd>
+<dt><kbd><span class="option">/mnt</span></kbd></dt>
+<dd><p>This directory contains your <em>mounted</em> drives (or other block devices, although unless you’re doing something quite esoteric, you’re mostly going to be looking for drives in <code class="docutils literal notranslate"><span class="pre">/mnt</span></code>).  So let’s say you plug in a USB drive, and want to browse through the files on the drive: you’re going to want to take a look within <code class="docutils literal notranslate"><span class="pre">/mnt</span></code>.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This list of directories is far from comprehensive.  Depending upon your particular distribution – as well as your specific system configuration – the directories in the <code class="docutils literal notranslate"><span class="pre">/</span></code> directory may vary.  However, the aforementioned directories are pretty typical for the vast majority of distributions.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Intro</a><ul>
+<li><a class="reference internal" href="#what-the-fuck-is-a-linux">What the fuck is a Linux?</a></li>
+<li><a class="reference internal" href="#everything-is-a-file">Everything is a File</a></li>
+<li><a class="reference internal" href="#the-superuser">The Superuser</a></li>
+<li><a class="reference internal" href="#for-the-home-team">/ for the Home Team</a></li>
+<li><a class="reference internal" href="#oh-the-places-you-ll-go">Oh, the Places You’ll Go</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Linux Crash Course documentation</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="navigation.html"
+                          title="next chapter">Navigation</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/intro.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="navigation.html" title="Navigation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Linux Crash Course documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linux Crash Course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Intro</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, notoriouslogank.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Navigation &#8212; Linux Crash Course  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/groundwork.css?v=594d7a89" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Intro" href="intro.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="intro.html" title="Intro"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linux Crash Course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Navigation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="navigation">
+<h1>Navigation<a class="headerlink" href="#navigation" title="Link to this heading">¶</a></h1>
+<section id="the-grand-tour">
+<span id="id1"></span><h2>The Grand Tour<a class="headerlink" href="#the-grand-tour" title="Link to this heading">¶</a></h2>
+<p>Alright, so you’ve read (or vaguely skimmed) the introductory section.  Hopefully, you at least <em>kind of</em> understand some of the concepts.  If, however, you feel way out of your depth, fear not: we’re going to start executing some common Linux commands.  By the end of this section, you’ll have a somewhat better understanding not only of the Linux file structure, but also some number of useful commands for navigating the system (as well as other common commands).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Don’t bother trying to memorize any (or all) of these commands.  If you use the terminal for your day-to-day interactions with the system, you <em>will</em> begin to memorize the necessary commands; simply knowing a command <strong>exists</strong> is often enough information to be able to meaningfully research what you specifically need to do.</p>
+</div>
+</section>
+<section id="you-are-here">
+<span id="id2"></span><h2>You Are Here<a class="headerlink" href="#you-are-here" title="Link to this heading">¶</a></h2>
+<p>First things first: before you can go somewhere, you need to know where you’ve <em>started</em> (well, not <strong>really</strong>, actually, but let’s pretend that’s true for the purposes of this section).  To discover precisely <em>where</em> in the filesystem you’re currently located, we’re going to use the command <code class="docutils literal notranslate"><span class="pre">pwd</span></code>.  Open a new terminal and execute the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+</pre></div>
+</div>
+<p>As you’ll see, the shell returns the exact path you’re currently “at”.  In this example, unless you’ve otherwise navigated to a different directory, this will likely return the absolute path to your home directory.  In my case, the output reads <code class="docutils literal notranslate"><span class="pre">/mnt/c/Users/logan/Desktop/lcc</span></code>; most likely your output will look more along the lines of <code class="docutils literal notranslate"><span class="pre">/home/&lt;your_username&gt;</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pwd</span></code> is quite useful in situations where you’ve navigated deeply into some directory to locate a particular file location and need the entire path to refer to by some other application.</p>
+<p>So that covers how to know where within the file system your current shell is running.  But what if you want to know exactly which files and/or directories are located at that location?</p>
+</section>
+<section id="roll-call">
+<span id="id3"></span><h2>Roll Call<a class="headerlink" href="#roll-call" title="Link to this heading">¶</a></h2>
+<p>To get a list of the files and directories located at your current location, you’ll want <code class="docutils literal notranslate"><span class="pre">ls</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<p>If you’re in your home directory – and you’re on a freshly-installed system – you may not get an awful lot of information back here.  However, <strong>in general</strong> you would expect to find, perhaps, a <code class="docutils literal notranslate"><span class="pre">Documents</span></code> directory in your home directory.  However, we could <code class="docutils literal notranslate"><span class="pre">ls</span></code> anywhere we wanted to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>/etc/ssh
+</pre></div>
+</div>
+<p>We’ve now provided the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command with an <em>argument</em>: <code class="docutils literal notranslate"><span class="pre">/etc/ssh</span></code>.  This tells the shell to list the contents of the specified directory.  You should see a list similar (but not necessarily identical) to: <code class="docutils literal notranslate"><span class="pre">ssh_config</span></code>, <code class="docutils literal notranslate"><span class="pre">sshd_config</span></code>, <code class="docutils literal notranslate"><span class="pre">known_hosts</span></code>, as well (perhaps) as a number of other files.  You may also notice – depending again on your system configuration – that Linux makes no distinction in the output between a <code class="docutils literal notranslate"><span class="pre">dir</span></code> and a <code class="docutils literal notranslate"><span class="pre">file</span></code>; in other system configurations, however, your terminal may output directories and files in different colors.  This can all be configured in a finely-grained manner at your discretion, but it’s something to at least be <strong>aware</strong> of, if not yet actively change.</p>
+<p>Now let’s give ourselves a workspace to play around with some files and suchlike.</p>
+</section>
+<section id="mkdir">
+<span id="id4"></span><h2>mkdir<a class="headerlink" href="#mkdir" title="Link to this heading">¶</a></h2>
+<p>Go ahead and run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>linux-crash-course
+</pre></div>
+</div>
+<p>There won’t be any obvious output from this command (unless it fails, which it really shouldn’t).  However, it <em>did</em> do something; go ahead and run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<p>to take a look and see what happened.</p>
+<p>In case it wasn’t painfully obvious, the <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> command <em>makes</em> a <em>directory</em> – or what you Windows veterans would call a “folder”.  Now let’s move <em>into</em> that directory and take a look around.</p>
+</section>
+<section id="move-along">
+<span id="id5"></span><h2>Move Along<a class="headerlink" href="#move-along" title="Link to this heading">¶</a></h2>
+<p>We have a destination in mind: the newly-created <code class="docutils literal notranslate"><span class="pre">linux-crash-course</span></code> directory.  So let’s navigate <em>into</em> that directory as if we were planning to look through its’ contents (or create some files):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>linux-crash-course
+<span class="nb">pwd</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span></code> is the Linux command for “call directory” (although I’ve also heard it suggested that it’s “change directory”, although I believe this is erroneous).</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Navigation</a><ul>
+<li><a class="reference internal" href="#the-grand-tour">The Grand Tour</a></li>
+<li><a class="reference internal" href="#you-are-here">You Are Here</a></li>
+<li><a class="reference internal" href="#roll-call">Roll Call</a></li>
+<li><a class="reference internal" href="#mkdir">mkdir</a></li>
+<li><a class="reference internal" href="#move-along">Move Along</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="intro.html"
+                          title="previous chapter">Intro</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/navigation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="intro.html" title="Intro"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linux Crash Course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Navigation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, notoriouslogank.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    </div>
+  </body>
+</html>
