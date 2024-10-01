@@ -37,6 +37,8 @@ Per the HiveOS documentation `available here <https://hiveon.com/install/#howto-
 Unable to Obtain IP Address
 ===========================
 
+**COMING SOON**
+
 .. _system-updates:
 
 System Updates
@@ -146,8 +148,11 @@ This will provide a list of available drivers from which to choose.
 No POST
 =======
 
+**COMING SOON**
+
 .. _boot-loop:
 
 Boot Loop
 =========
 
+**COMING SOON**
