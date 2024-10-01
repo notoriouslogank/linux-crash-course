@@ -30,4 +30,4 @@ html_logo = "https://static.wixstatic.com/media/27c6a6_62ba63aad329460b868b5e9ed
 pygments_style = "sphinx"
 highlight_language = "bash"
 html_last_updated_fmt = ""
-html_permalinks_icon = "Icons.permalinks_icon"
+html_permalinks_icon = Icons.permalinks_icon
