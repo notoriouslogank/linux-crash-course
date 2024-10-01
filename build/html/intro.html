@@ -1,47 +1,156 @@
 <!DOCTYPE html>
+<html lang="en"
+      data-content_root="./"
+      x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }"
+      x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
+      class="scroll-smooth"
+      :class="{'dark': darkMode === 'dark' || (darkMode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)}"
+>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="./">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Intro | Linux Crash Course  documentation</title>
+    <meta property="og:title" content="Intro | Linux Crash Course  documentation" />
+    <meta name="twitter:title" content="Intro | Linux Crash Course  documentation" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/theme.css?v=ecdfb4fc" />
+        <link rel="search" title="Search" href="search.html" />
+        <link rel="index" title="Index" href="genindex.html" />
+          <link rel="next" title="Navigation" href="navigation.html" />
+          <link rel="prev" title="Linux Crash Course" href="index.html" />
 
-    <title>Intro &#8212; Linux Crash Course  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
-    <link rel="stylesheet" type="text/css" href="_static/groundwork.css?v=594d7a89" />
-    <script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Navigation" href="navigation.html" />
-    <link rel="prev" title="Linux Crash Course documentation" href="index.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="Related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="navigation.html" title="Navigation"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Linux Crash Course documentation"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Linux Crash Course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Intro</a></li> 
-      </ul>
-    </div>  
+    <script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+</head>
+<body x-data="{ showSidebar: false }" class="min-h-screen font-sans antialiased bg-background text-foreground" :class="{ 'overflow-hidden': showSidebar }">
+    <div x-cloak x-show="showSidebar" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" @click.self="showSidebar = false"></div><div id="page" class="relative flex flex-col min-h-screen"><a href="#content" class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100">
+      Skip to content
+    </a><header
+  class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+    <div class="hidden mr-4 md:flex">
+      <a href="index.html" class="flex items-center mr-6">
+          <img height="24" width="24" class="mr-2 dark:invert" src="https://static.wixstatic.com/media/27c6a6_62ba63aad329460b868b5e9ede26f848~mv2.png/v1/fill/w_84,h_84,al_c,q_85,usm_1.20_1.00_0.01,enc_auto/COASTAL%20CRYPTO%20wht.png" alt="Logo" /><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">Linux Crash Course  documentation</span>
+      </a></div><button
+      class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden"
+      type="button" @click="showSidebar = true">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" aria-hidden="true"
+        fill="currentColor">
+        <path
+          d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z" />
+      </svg>
+      <span class="sr-only">Toggle navigation menu</span>
+    </button>
+    <div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+      <div class="flex-1 w-full md:w-auto md:flex-none"><form id="searchbox"
+      action="search.html"
+      method="get"
+      class="relative flex items-center group"
+      @keydown.k.window.meta="$refs.search.focus()">
+  <input x-ref="search"
+          name="q"
+          id="search-input"
+          type="search"
+          aria-label="Search the docs"
+          placeholder="Search ..."
+          class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" />
+  <kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+    <span class="text-xs">⌘</span>
+    K
+  </kbd>
+</form>
+      </div>
+      <nav class="flex items-center space-x-1">
+        <button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'"
+          class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9"
+          type="button"
+          aria-label="Color theme switcher">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+            class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0">
+            <path
+              d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+            class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100">
+            <path
+              d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z" />
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <section id="intro">
-<h1>Intro<a class="headerlink" href="#intro" title="Link to this heading">¶</a></h1>
+    <div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside id="left-sidebar"
+  class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky"
+  :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }">
+
+    <a href="index.html" class="!justify-start text-sm md:!hidden bg-background">
+        <img height="16" width="16" class="mr-2 dark:invert" src="https://static.wixstatic.com/media/27c6a6_62ba63aad329460b868b5e9ede26f848~mv2.png/v1/fill/w_84,h_84,al_c,q_85,usm_1.20_1.00_0.01,enc_auto/COASTAL%20CRYPTO%20wht.png" alt="Logo" /><span class="font-bold text-clip whitespace-nowrap">Linux Crash Course  documentation</span>
+    </a>
+
+    <div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+      <div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="navigation.html">Navigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting Common Issues</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+    <button type="button" @click="showSidebar = false"
+      class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+        stroke="none" class="h-4 w-4">
+        <path
+          d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z" />
+      </svg>
+    </button>
+  </aside>
+        <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs"
+     class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+  <a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground"
+     href="index.html">
+    <span class="hidden md:inline">Linux Crash Course  documentation</span>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         height="18"
+         width="18"
+         viewBox="0 96 960 960"
+         aria-label="Home"
+         fill="currentColor"
+         stroke="none"
+         class="md:hidden">
+      <path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z" />
+    </svg>
+  </a>
+  
+<div class="mr-1">/</div><span aria-current="page"
+        class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Intro</span>
+</nav>
+
+    <div id="content" role="main">
+      <section id="intro">
+<h1>Intro<a class="headerlink" href="#intro" title="Link to this heading"><svg xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></h1>
 <section id="what-the-fuck-is-a-linux">
-<span id="id1"></span><h2>What the fuck is a Linux?<a class="headerlink" href="#what-the-fuck-is-a-linux" title="Link to this heading">¶</a></h2>
+<span id="id1"></span><h2>What the fuck is a Linux?<a class="headerlink" href="#what-the-fuck-is-a-linux" title="Link to this heading"><svg xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Please don’t take anything in this guide as 100% gospel.  While I’ve done my best to ensure I’m not giving you any outright erroneous information, it’s entirely possible that I either have forgotten something vital, misunderstood something on a fundamental level, or your individual system configuration is in conflict with the information expressed in this guide.  Please do your own research if you’d like further information about anything contained in this guide; use this guide at your own risk.  I’m not responsible for you bricking your shit.</p>
@@ -51,32 +160,32 @@
 <p>Fundamentally, these are the things you should keep in mind:</p>
 </section>
 <section id="everything-is-a-file">
-<span id="id2"></span><h2>Everything is a File<a class="headerlink" href="#everything-is-a-file" title="Link to this heading">¶</a></h2>
+<span id="id2"></span><h2>Everything is a File<a class="headerlink" href="#everything-is-a-file" title="Link to this heading"><svg xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></h2>
 <p>So what do I mean by that?  In Linux, we conceptualize everything as a file (or folder, though we often call that a <cite>dir</cite> as in <strong>directory</strong>.) So whereas on Windows you’d often have to, say, open a program and reconfigure its’ settings within the software, in Linux you’ll often <em>edit</em> – in a text editor – the actual values of data within a file.  In Windows, you rely on the GUI to make most changes; in Linux, there are times the command line is either the only or the <strong>best</strong> option.</p>
 <p>This is relevant in deeper ways, but we won’t get into those right now.</p>
 </section>
 <section id="the-superuser">
-<span id="superusers"></span><h2>The Superuser<a class="headerlink" href="#the-superuser" title="Link to this heading">¶</a></h2>
+<span id="superusers"></span><h2>The Superuser<a class="headerlink" href="#the-superuser" title="Link to this heading"><svg xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></h2>
 <p>Unlike Windows, Linux is <strong>extremely</strong> security-concious.  This isn’t to say Windows is <em>especially</em> poor in terms of security; however, default Windows configurations are <strong>extremelly</strong> (read: dangerously) lax with respect to file permissions – so much so that it’s possible the concept of “file permissions” is somewhat alien.</p>
 <p>Whereas in Windows you might right click something and “Run As Administrator”, in Linux you’d instead log into the so-called superuser account (although much more frequently you’ll hear this administrative account referred to as “root”).</p>
 <p>Let’s imagine we need to reconfigure some SSH settings on a system-wide level.  As this action is potentially extremely dangerous (in terms of potentially opening the machine up to  possible attack vectors), Linux doesn’t allow just <em>anyone</em> to fuck around with such files.</p>
 <p>I’ll illustrate what I mean. First, we’re going to open our SSH configuration file in a text editor (in this case we’re using nano, but there are myriad text editors you could use).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>/etc/ssh/ssh_config
-</pre></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">nano<span class="w"> </span>/etc/ssh/ssh_config
+</span></code></pre></div>
 </div>
 <p>Depending on your distribution, level of administrative access, etc., you likely either <em>immediately</em> got an error which disallowed you to open the file <em>at all</em>.  However, most distributions with which I’m familiar will in fact let you open the file in a text editor.  If so, go ahead and add the following to the very end of the open file: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">just</span> <span class="pre">a</span> <span class="pre">pointless</span> <span class="pre">comment</span> <span class="pre">to</span> <span class="pre">illustrate</span> <span class="pre">a</span> <span class="pre">point</span></code>.</p>
 <p>Once you’ve added that (or whatever text you’d like, really), go ahead and try to write the changes to the file.  By default in nano, the hotkeys are Ctrl+X to exit; you’ll receive a message asking whether or not you’d like to “save the modified buffer” – that is, write your changes to disk.  If you say “yes”, you’ll quickly find yourself faced with another error: you lack the proper permissions to write to this file location.</p>
 <p>So what, then, is to be done?  Well, you <strong>could</strong> login to the root account on the system, assuming you know the root password (and depending a bit on the individual system configuration):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su<span class="w"> </span>root
-nano<span class="w"> </span>/etc/ssh/ssh_config
-</pre></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">su<span class="w"> </span>root
+</span><span id="line-2">nano<span class="w"> </span>/etc/ssh/ssh_config
+</span></code></pre></div>
 </div>
 <p>So what are we doing here?  Firstly, we’re logging into an entirely different user account – in this case <code class="docutils literal notranslate"><span class="pre">root</span></code>, the most fundamental administrative account on any Linux system.  If you have “root access”, you can execute <strong>any</strong> command the machine is capable of – often without so much as a confirmation.  In the second line, we’re simply doing what we’ve seen prior: we’re opening the configuration file for editing.  You’ll notice that now, however, you should be able to edit the file <strong>and</strong> save the changes to disk.</p>
 <p>Once you switch to the root account, you’ll also notice that your prompt changes.  Whereas before you’d see, “&lt;username&gt;&#64;&lt;hostname&gt;:” (or similar), you’ll notice the username has changed to “root&#64;&lt;hostname&gt;”.  Now, any command you execute will be run – often without asking for further confirmation.</p>
 <p>You may notice that this presents some potentially major issues, the primary of which is: when you inevitably forget to log back <strong>out</strong> of the root account, and you make some sort of change that was <strong>intended</strong> to be made locally (as your username), you instead make that change <strong>globally</strong>.  As such, it is often considered poor form to actually switch to the root account – a better solution would be some way to <em>temporarily</em> login to the root account, just long enough to perform the necessary task(s), and ensuring you log back <em>out</em> of the root account before you <strong>fuck everything up</strong>.  Enter: <code class="docutils literal notranslate"><span class="pre">sudo</span></code>!</p>
 <p>Let’s look at the exact same task (editing your SSH configuration file), using sudo:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/ssh_config
-</pre></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/ssh_config
+</span></code></pre></div>
 </div>
 <p>Provided you know the requisite password, you should now be able to edit and save the configuration file <em>without</em> having to actually switch to another user account.  The magic here comes from the <code class="docutils literal notranslate"><span class="pre">sudo</span></code> argument we’ve prepended to the command.  Sudo is short for “superuser do”; in other words, we’re telling the superuser (the root user) to “do” (ie, execute) a particular command (or commands).  We don’t have to remember to log back out of anything, because as soon as we’ve run our command, we’re right back to whatever our username was before.  This is considered <em>much</em> safer than logging into the root account entirely, though it should be noted that any command run with “sudo” <em>will be treated as if run by the root user</em>.  In other words, be careful.</p>
 <div class="admonition warning">
@@ -85,7 +194,7 @@ nano<span class="w"> </span>/etc/ssh/ssh_config
 </div>
 </section>
 <section id="for-the-home-team">
-<span id="root-directory"></span><h2>/ for the Home Team<a class="headerlink" href="#for-the-home-team" title="Link to this heading">¶</a></h2>
+<span id="root-directory"></span><h2>/ for the Home Team<a class="headerlink" href="#for-the-home-team" title="Link to this heading"><svg xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></h2>
 <p>One of the most important principles to understand about Linux is that the way in which drives (and therefore directories and files lower in the hierarchy) are named are fundamentally different than Windows – if you’ve used MacOS, my understanding is that this will be much more familiar.</p>
 <p>First: rather than a <code class="docutils literal notranslate"><span class="pre">C:</span></code> (or D, or X) drive, Linux refers to every file location relative to <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p>
 <p>That’s not a typo: the base directory for the entire filestructure is <code class="docutils literal notranslate"><span class="pre">/</span></code>, pronounced “root”.  This isn’t to be confused with the concept of “root access” – but more on that later.  Moving down the hierarchy from <code class="docutils literal notranslate"><span class="pre">/</span></code>, let’s look at a user’s “home” directory.</p>
@@ -93,7 +202,7 @@ nano<span class="w"> </span>/etc/ssh/ssh_config
 <p>Let’s assume our machine has two users, “Bob” and “Frank”.  Inside the root directory – <code class="docutils literal notranslate"><span class="pre">/</span></code> – you’ll find a <code class="docutils literal notranslate"><span class="pre">home</span></code> directory.  Within <strong>that</strong>, you’d expect to find two directories: <code class="docutils literal notranslate"><span class="pre">bob</span></code> and <code class="docutils literal notranslate"><span class="pre">frank</span></code>.</p>
 </section>
 <section id="oh-the-places-you-ll-go">
-<span id="oh-the-places-youll-go"></span><h2>Oh, the Places You’ll Go<a class="headerlink" href="#oh-the-places-you-ll-go" title="Link to this heading">¶</a></h2>
+<span id="oh-the-places-youll-go"></span><h2>Oh, the Places You’ll Go<a class="headerlink" href="#oh-the-places-you-ll-go" title="Link to this heading"><svg xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></h2>
 <p>I won’t delve <strong>too</strong> deeply into the other directories located in the root directory, but some other important directories directly off <code class="docutils literal notranslate"><span class="pre">/</span></code> include:</p>
 <dl class="option-list">
 <dt><kbd><span class="option">/etc</span></kbd></dt>
@@ -119,77 +228,34 @@ nano<span class="w"> </span>/etc/ssh/ssh_config
 </section>
 </section>
 
-
-            <div class="clearer"></div>
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
+    </div></div><aside id="right-sidebar" class="hidden text-sm xl:block">
+  <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
     <ul>
-<li><a class="reference internal" href="#">Intro</a><ul>
 <li><a class="reference internal" href="#what-the-fuck-is-a-linux">What the fuck is a Linux?</a></li>
 <li><a class="reference internal" href="#everything-is-a-file">Everything is a File</a></li>
 <li><a class="reference internal" href="#the-superuser">The Superuser</a></li>
 <li><a class="reference internal" href="#for-the-home-team">/ for the Home Team</a></li>
 <li><a class="reference internal" href="#oh-the-places-you-ll-go">Oh, the Places You’ll Go</a></li>
 </ul>
-</li>
-</ul>
-
-  </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="index.html"
-                          title="previous chapter">Linux Crash Course documentation</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="navigation.html"
-                          title="next chapter">Navigation</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/intro.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<search id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
+</div>
+</aside>
+        </main>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="Related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="navigation.html" title="Navigation"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Linux Crash Course documentation"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Linux Crash Course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Intro</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2024, notoriouslogank.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
-    </div>
-  </body>
+    </div><footer class="py-6 border-t border-border md:py-0">
+    <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+      <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+        <p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2024, notoriouslogank&nbsp;Last updated: Sep 30, 2024.&nbsp;Built with <a class="font-medium underline underline-offset-4"
+    href="https://www.sphinx-doc.org"
+    rel="noreferrer">Sphinx 7.3.7</a></p>
+</div>
+</div>
+</footer>
+  </div>
+  
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script defer="defer" src="_static/theme.js?v=e82a16a3"></script>
+  
+</body>
 </html>
