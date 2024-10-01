@@ -14,3 +14,4 @@ Welcome to notoriouslogank's Linux Crash Course.  This is going to be an attempt
 
    intro
    navigation
+   troubleshooting
