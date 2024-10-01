@@ -51,7 +51,7 @@ selfupgrade
 
 This HiveOS-provided script tends to be my first port of call in terms of updates.  To run the selfupgrade script, run the following command:
 
-.. code-block:: bash
+.. code-block::
 
     selfupgrade --force
 
@@ -61,7 +61,7 @@ This HiveOS-provided script tends to be my first port of call in terms of update
 
 Essentially, this command updates **only** the HiveOS packages, **not** the entirety of the underlying Ubuntu system.  This is done by design on HiveOS's part, apparently to save bandwidth.  However, there are occasions where the underlying Ubuntu repositories have become out of sync for one reason or another.  When this happens, you'll find the ``selfupgrade`` returns some errors, notably "Failed to fetch <a particular package>".  In such a situation, you need to update the underlying Ubuntu repositories *first*, after which ``selfupgrade`` should run successfully:
 
-.. code-block:: bash
+.. code-block::
 
     apt update && selfupgrade --force
 
@@ -72,7 +72,7 @@ hive-replace
 
 Whereas the previous command(s) update merely the HiveOS installation, this command will update the entire system image to the newest stable version of HiveOS **and** the graphics card drivers (more on this later):
 
-.. code-block:: bash
+.. code-block::
 
     hive-replace -s -y
 
@@ -80,7 +80,7 @@ While straightforward enough -- run this command and move on, HiveOS will do the
 
 If for some reason you'd like to install some arbitary HiveOS image (not necessarily the most recent stable version), you can get a list of available images with:
 
-.. code-block:: bash
+.. code-block::
 
     hive-replace -l
 
@@ -102,19 +102,19 @@ Nvidia Graphics Drivers
 
 For the most up-to-date Nvidia drivers, use the HiveOS provided command:
 
-.. code-block:: bash
+.. code-block::
 
     nvidia-driver-update
 
 If, for whatever reason, you'd like to install a *particular* driver that **is not** necessarily the most recent driver for that card, you can get a list of available drivers as such:
 
-.. code-block:: bash
+.. code-block::
 
     nvidia-driver-update --list
 
 This will return a list of available drivers and allow you to select a specific version.  Or, if you already know the exact driver you'd like to install, you can install it with:
 
-.. code-block:: bash
+.. code-block::
 
     nvidia-driver-update <xxx.xx>
 
@@ -135,7 +135,7 @@ AMD Graphics Drivers
 
 If you've read the above warning and would like to proceed *anyway*, you can use the HiveOS builtin AMD GPU update script:
 
-.. code-block:: bash
+.. code-block::
 
     amd-ocl-install
 
