@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Troubleshooting Common Issues &#8212; Linux Crash Course  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/groundwork.css?v=594d7a89" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linux Crash Course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Troubleshooting Common Issues</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="troubleshooting-common-issues">
+<h1>Troubleshooting Common Issues<a class="headerlink" href="#troubleshooting-common-issues" title="Link to this heading">¶</a></h1>
+<p>Let’s take a look at some common issues that can occur with GPU miners.  The following issues are presented in no particular order; the <em>troubleshooting</em> steps, however, <em>are</em> presented in what I would generally consider the recommended troubleshooting flow.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Please note that this list is provided primarily as a <em>starting point</em>; please read the <em>entirety</em> of the relevant entry and <strong>make sure</strong> you know what the command(s) you’re about to run <em>actually do</em> before simply copy/pasting commands into the terminal.  You’ve been warned.</p>
+</div>
+<section id="no-space-on-disk">
+<span id="no-space"></span><h2>No Space On Disk<a class="headerlink" href="#no-space-on-disk" title="Link to this heading">¶</a></h2>
+<p>This issue tends to arise when HiveOS is running off a USB.  Ultimately this issue is due to the way HiveOS allocates the space on its’ install media.  Because – for whatever reason – HiveOS doesn’t actually use the <em>entirety</em> of the disk but rather creates several smaller partitions on the drive, an issue can occur where the system log files can fill the entirety of the free space on the partition.  Usually this seems to happen on rigs which have been running for some time or have otherwise generated a large number of logs – typically, but not always, due to other system errors.</p>
+<p>As with most Linux distributions, the system log files can be found in <code class="docutils literal notranslate"><span class="pre">/var/log</span></code>.  The miner-specific log files – and generally the ones we want to deal with – are located more specifically at <code class="docutils literal notranslate"><span class="pre">/var/log/miner/&lt;miner_name&gt;/*.log</span></code>.</p>
+<p>Should you run into a “No Disk Space” error, the first move is to delete the log files.  In the terminal, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>/var/log/&lt;miner_name&gt;/*
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This command will delete <strong>all</strong> miner logs; if you think you might need them for further troubleshooting (or records), perhaps simply <em>moving</em> the logs to a separate disk would be more advisable.</p>
+</div>
+<p>Per the HiveOS documentation <a class="reference external" href="https://hiveon.com/install/#howto-image">available here</a>, when running HiveOS from a live USB, it’s often advisable to run the <code class="docutils literal notranslate"><span class="pre">logs-off</span></code> command immediately following system installation.  Not only will this prevent the “Disk Full” error, but it will help prolong the life of the USB as it greatly reduces the number of read/write operations performed on the system over time.</p>
+</section>
+<section id="unable-to-obtain-ip-address">
+<span id="no-ip"></span><h2>Unable to Obtain IP Address<a class="headerlink" href="#unable-to-obtain-ip-address" title="Link to this heading">¶</a></h2>
+</section>
+<section id="system-updates">
+<span id="id1"></span><h2>System Updates<a class="headerlink" href="#system-updates" title="Link to this heading">¶</a></h2>
+<p>As a general rule, don’t fix what ain’t broke.  That means that, provided HiveOS is operating as expected, it’s often a good idea to simply leave well enough alone and avoid making needless system updates (just in case something breaks).  However, there are certainly times where a system update is both advisable and necessary.  There are several ways to accomplish this.</p>
+<section id="selfupgrade">
+<span id="id2"></span><h3>selfupgrade<a class="headerlink" href="#selfupgrade" title="Link to this heading">¶</a></h3>
+<p>This HiveOS-provided script tends to be my first port of call in terms of updates.  To run the selfupgrade script, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>selfupgrade<span class="w"> </span>--force
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--force</span></code> switch is optional, but I typically include it when I’m running a selfupgrade.  This just avoids having to confirm package changes, etc.  Just be aware that using the <code class="docutils literal notranslate"><span class="pre">--force</span></code> flag will, as the name suggests, <em>force</em> the upgrades regardless of potential breaking errors it may encounter.</p>
+</div>
+<p>Essentially, this command updates <strong>only</strong> the HiveOS packages, <strong>not</strong> the entirety of the underlying Ubuntu system.  This is done by design on HiveOS’s part, apparently to save bandwidth.  However, there are occasions where the underlying Ubuntu repositories have become out of sync for one reason or another.  When this happens, you’ll find the <code class="docutils literal notranslate"><span class="pre">selfupgrade</span></code> returns some errors, notably “Failed to fetch &lt;a particular package&gt;”.  In such a situation, you need to update the underlying Ubuntu repositories <em>first</em>, after which <code class="docutils literal notranslate"><span class="pre">selfupgrade</span></code> should run successfully:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>selfupgrade<span class="w"> </span>--force
+</pre></div>
+</div>
+</section>
+<section id="hive-replace">
+<span id="id3"></span><h3>hive-replace<a class="headerlink" href="#hive-replace" title="Link to this heading">¶</a></h3>
+<p>Whereas the previous command(s) update merely the HiveOS installation, this command will update the entire system image to the newest stable version of HiveOS <strong>and</strong> the graphics card drivers (more on this later):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hive-replace<span class="w"> </span>-s<span class="w"> </span>-y
+</pre></div>
+</div>
+<p>While straightforward enough – run this command and move on, HiveOS will do the rest – it’s worth noting that this (generally) takes a <em>while</em> in my experience.  Many times, it will even appear that the system has entirely locked up – I’ve seen the screen go blank or simply show a stationary (ie, not blinking) cursor.  Just trust the process and let it do it’s thing; check back in 5-10 minutes and you’ll most likely be back up and running.</p>
+<p>If for some reason you’d like to install some arbitary HiveOS image (not necessarily the most recent stable version), you can get a list of available images with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hive-replace<span class="w"> </span>-l
+</pre></div>
+</div>
+</section>
+</section>
+<section id="drivers-out-of-date">
+<span id="graphics-drivers"></span><h2>Drivers Out of Date<a class="headerlink" href="#drivers-out-of-date" title="Link to this heading">¶</a></h2>
+<p>Generally, it is inadvisable to update drivers (or the HiveOS installation itself) if everything is functioning properly.  However, there <em>are</em> times when updating the GPU drivers becomes necessary.  Ultimately there are several ways this can be done, depending on your specific situation.</p>
+<p>As previously-mentioned, <code class="docutils literal notranslate"><span class="pre">hive-replace</span> <span class="pre">-l</span></code> should be comprehensive in updating both the HiveOS system image as well as the drivers.  If you’ve run <code class="docutils literal notranslate"><span class="pre">hive-replace</span> <span class="pre">-l</span></code>, you’ve updated the drivers as well (provided nothing’s gone horribly awry).</p>
+<p>However, there are occasions when you’d like to specifically (and <strong>only</strong>) update the graphics drivers.  You’ll need to know whether you’re running Nvidia graphics cards or AMD cards, then use the relevant command(s):</p>
+<section id="nvidia-graphics-drivers">
+<span id="nvidia-drivers"></span><h3>Nvidia Graphics Drivers<a class="headerlink" href="#nvidia-graphics-drivers" title="Link to this heading">¶</a></h3>
+<p>For the most up-to-date Nvidia drivers, use the HiveOS provided command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nvidia-driver-update
+</pre></div>
+</div>
+<p>If, for whatever reason, you’d like to install a <em>particular</em> driver that <strong>is not</strong> necessarily the most recent driver for that card, you can get a list of available drivers as such:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nvidia-driver-update<span class="w"> </span>--list
+</pre></div>
+</div>
+<p>This will return a list of available drivers and allow you to select a specific version.  Or, if you already know the exact driver you’d like to install, you can install it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nvidia-driver-update<span class="w"> </span>&lt;xxx.xx&gt;
+</pre></div>
+</div>
+<p>Where &lt;xxx.xx&gt; is the exact driver version you’d like to install.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Occasionally, updating the drivers can cause the overclocking settings to break.  Usually you can fix this issue with <code class="docutils literal notranslate"><span class="pre">apt</span> <span class="pre">install</span> <span class="pre">--reinstall</span> <span class="pre">-y</span> <span class="pre">nvidia-settings</span></code>.  It may be necessary to enter maintenance mode to get this command to work (as maintenance mode operates without loading the graphics drivers).</p>
+</div>
+</section>
+<section id="amd-graphics-drivers">
+<span id="amd-drivers"></span><h3>AMD Graphics Drivers<a class="headerlink" href="#amd-graphics-drivers" title="Link to this heading">¶</a></h3>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>While HiveOS <strong>does</strong> provide a builtin script to update AMD drivers independantly from the rest of the system, HiveOS <strong>does not</strong> recommend doing so.  More information is available <a class="reference external" href="https://hiveon.com/knowledge-base/guides/driver_upd/">here</a>.</p>
+</div>
+<p>If you’ve read the above warning and would like to proceed <em>anyway</em>, you can use the HiveOS builtin AMD GPU update script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>amd-ocl-install
+</pre></div>
+</div>
+<p>This will provide a list of available drivers from which to choose.</p>
+</section>
+</section>
+<section id="no-post">
+<span id="id4"></span><h2>No POST<a class="headerlink" href="#no-post" title="Link to this heading">¶</a></h2>
+</section>
+<section id="boot-loop">
+<span id="id5"></span><h2>Boot Loop<a class="headerlink" href="#boot-loop" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Troubleshooting Common Issues</a><ul>
+<li><a class="reference internal" href="#no-space-on-disk">No Space On Disk</a></li>
+<li><a class="reference internal" href="#unable-to-obtain-ip-address">Unable to Obtain IP Address</a></li>
+<li><a class="reference internal" href="#system-updates">System Updates</a><ul>
+<li><a class="reference internal" href="#selfupgrade">selfupgrade</a></li>
+<li><a class="reference internal" href="#hive-replace">hive-replace</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#drivers-out-of-date">Drivers Out of Date</a><ul>
+<li><a class="reference internal" href="#nvidia-graphics-drivers">Nvidia Graphics Drivers</a></li>
+<li><a class="reference internal" href="#amd-graphics-drivers">AMD Graphics Drivers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#no-post">No POST</a></li>
+<li><a class="reference internal" href="#boot-loop">Boot Loop</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/troubleshooting.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Linux Crash Course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Troubleshooting Common Issues</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, notoriouslogank.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    </div>
+  </body>
+</html>
