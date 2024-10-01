@@ -20,7 +20,7 @@ You Are Here
 
 First things first: before you can go somewhere, you need to know where you've *started* (well, not **really**, actually, but let's pretend that's true for the purposes of this section).  To discover precisely *where* in the filesystem you're currently located, we're going to use the command ``pwd``.  Open a new terminal and execute the following command:
 
-.. code-block:: bash
+.. code-block::
 
     pwd
 
@@ -37,13 +37,13 @@ Roll Call
 
 To get a list of the files and directories located at your current location, you'll want ``ls``.
 
-.. code-block:: bash
+.. code-block::
 
     ls
 
 If you're in your home directory -- and you're on a freshly-installed system -- you may not get an awful lot of information back here.  However, **in general** you would expect to find, perhaps, a ``Documents`` directory in your home directory.  However, we could ``ls`` anywhere we wanted to:
 
-.. code-block:: bash
+.. code-block::
 
     ls /etc/ssh
 
@@ -58,13 +58,13 @@ mkdir
 
 Go ahead and run the following command:
 
-.. code-block:: bash
+.. code-block::
 
     mkdir linux-crash-course
 
 There won't be any obvious output from this command (unless it fails, which it really shouldn't).  However, it *did* do something; go ahead and run
 
-.. code-block:: bash
+.. code-block::
 
     ls
 
@@ -79,7 +79,7 @@ Move Along
 
 We have a destination in mind: the newly-created ``linux-crash-course`` directory.  So let's navigate *into* that directory as if we were planning to look through its' contents (or create some files):
 
-.. code-block:: bash
+.. code-block::
 
     cd linux-crash-course
     pwd

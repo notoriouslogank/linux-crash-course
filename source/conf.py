@@ -8,7 +8,7 @@ from sphinxawesome_theme.postprocess import Icons
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Linux Crash Course"
+project = "Coastal Crypto Knowledge Base"
 copyright = "2024, notoriouslogank"
 author = "notoriouslogank"
 

@@ -40,7 +40,7 @@ Let's imagine we need to reconfigure some SSH settings on a system-wide level.  
 
 I'll illustrate what I mean. First, we're going to open our SSH configuration file in a text editor (in this case we're using nano, but there are myriad text editors you could use).
 
-.. code-block:: bash
+.. code-block::
 
     nano /etc/ssh/ssh_config
 
@@ -50,7 +50,7 @@ Once you've added that (or whatever text you'd like, really), go ahead and try t
 
 So what, then, is to be done?  Well, you **could** login to the root account on the system, assuming you know the root password (and depending a bit on the individual system configuration):
 
-.. code-block:: bash
+.. code-block::
 
     su root
     nano /etc/ssh/ssh_config
@@ -63,7 +63,7 @@ You may notice that this presents some potentially major issues, the primary of 
 
 Let's look at the exact same task (editing your SSH configuration file), using sudo:
 
-.. code-block:: bash
+.. code-block::
 
     sudo nano /etc/ssh/ssh_config
 
