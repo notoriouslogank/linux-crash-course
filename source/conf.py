@@ -23,7 +23,7 @@ exclude_patterns = []
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-
+html_title = "Coastal Crypto Knowledge Base"
 html_theme = "sphinxawesome_theme"
 html_static_path = ["_static"]
 html_logo = "https://static.wixstatic.com/media/27c6a6_62ba63aad329460b868b5e9ede26f848~mv2.png/v1/fill/w_84,h_84,al_c,q_85,usm_1.20_1.00_0.01,enc_auto/COASTAL%20CRYPTO%20wht.png"
