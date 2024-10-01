@@ -4,7 +4,7 @@ Troubleshooting Common Issues
 
 Let's take a look at some common issues that can occur with GPU miners.  The following issues are presented in no particular order; the *troubleshooting* steps, however, *are* presented in what I would generally consider the recommended troubleshooting flow.
 
-.. danger::
+.. WARNING::
 
     Please note that this list is provided primarily as a *starting point*; please read the *entirety* of the relevant entry and **make sure** you know what the command(s) you're about to run *actually do* before simply copy/pasting commands into the terminal.  You've been warned.
 
@@ -127,7 +127,7 @@ Where <xxx.xx> is the exact driver version you'd like to install.
 AMD Graphics Drivers
 --------------------
 
-.. danger::
+.. WARNING::
 
     While HiveOS **does** provide a builtin script to update AMD drivers independantly from the rest of the system, HiveOS **does not** recommend doing so.  More information is available `here <https://hiveon.com/knowledge-base/guides/driver_upd/>`_.
 
