@@ -19,7 +19,7 @@ As with most Linux distributions, the system log files can be found in ``/var/lo
 
 Should you run into a "No Disk Space" error, the first move is to delete the log files.  In the terminal, run the following command:
 
-.. highlight:: sh
+.. highlight:: bash
 
 .. code-block::
 
