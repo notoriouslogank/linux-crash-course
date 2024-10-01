@@ -24,3 +24,4 @@ exclude_patterns = []
 
 html_theme = "groundwork"
 html_static_path = ["_static"]
+pygments_style = "sphinx"
